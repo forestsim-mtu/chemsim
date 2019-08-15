@@ -25,7 +25,7 @@ caffeinate &
 # Run the simulation
 for ndx in {1..1}
 do
-  java -javaagent:lib/SizeOf.jar -Xms4G -XX:+UseG1GC -jar ChemSim.jar -n $ndx -r $reactions -c $chemicals -l 1.0E+06 -w 1 -s 1
+  java -javaagent:lib/SizeOf.jar -Xms4G -XX:+UseG1GC -jar ChemSim.jar -n $ndx -r $reactions -c $chemicals -l 1.0E+05
 done
 
 # Move the results, last console
@@ -47,3 +47,6 @@ cd data; zip -r -X "$zip" * -x "*.DS_Store"
 
 # Restore sleep
 killall caffeinate
+
+# Notify user
+osascript -e 'display notification "Model complete!"'

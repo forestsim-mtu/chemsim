@@ -16,8 +16,7 @@ public class ModelProperities {
 	// The expected duration of the model in time steps
 	private int timeSteps;
 				
-	// Values needed to ensure hydrogen peroxide exhibits a linear decay based upon the UV intensity
-	private double hydrogenPeroxideDecay = 0;
+	private double decayProbability;
 	
 	// The odds that hydroxyl will be retained in the model
 	private double hydroxylRetention = 1.0; 
@@ -39,10 +38,6 @@ public class ModelProperities {
 		return decayModel;
 	}
 		
-	public double getHydrogenPeroxideDecay() {
-		return hydrogenPeroxideDecay;
-	}
-	
 	public double getHydroxylRetention() {
 		return hydroxylRetention;
 	}
@@ -67,6 +62,10 @@ public class ModelProperities {
 		return timeSteps;
 	}
 		
+	public double getDecayProbability() {
+		return decayProbability;
+	}
+
 	public void setDecayModel(DecayModel value) {
 		decayModel = value;
 	}
@@ -74,11 +73,7 @@ public class ModelProperities {
 	public void setFastPathway(int value) {
 		fastPathway = value;
 	}
-	
-	public void setHydrogenPeroxideDecay(double value) {
-		hydrogenPeroxideDecay = value;
-	}
-	
+		
 	public void setHydroxylRetention(double value) {
 		hydroxylRetention = value;
 	}
@@ -97,5 +92,9 @@ public class ModelProperities {
 	
 	public void setTimeSteps(int value) {
 		timeSteps = value;
+	}
+	
+	public void setDecayProbability(double value) {
+		decayProbability = value;
 	}
 }

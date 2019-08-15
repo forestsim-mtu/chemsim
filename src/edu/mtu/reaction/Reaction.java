@@ -302,16 +302,21 @@ public class Reaction {
 	 */
 	private boolean photolysis(Molecule molecule) {
 		
+		// Return if this isn't hydrogen peroxide
+		if (!molecule.getFormula().equals("H2O2")) {
+			return false;
+		}
+		
 		// Check to see if the reaction occurred based upon decay rates
-		double decay = ChemSim.getProperties().getHydrogenPeroxideDecay();
+		double decay = ChemSim.getProperties().getDecayProbability();
 		XoRoShiRo128PlusRandom random = (XoRoShiRo128PlusRandom)ChemSim.getInstance().getRandom();
 		if (random.nextDoubleFast() > decay) {
 			return false;
 		}
 
 		// Create the relevant products, note that hydroxyl gets special treatment
-		double retention = ChemSim.getProperties().getHydroxylRetention();
 		int[] location = Reactor.getInstance().getLocation(molecule);
+		double retention = ChemSim.getProperties().getHydroxylRetention();
 		for (String product : ReactionRegistry.getInstance().getPhotolysisReaction(molecule)) {
 			if (random.nextDoubleFast() < retention) {
 				MoleculeFactory.create(product, location);
